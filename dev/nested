@@ -1,0 +1,21 @@
+#!/bin/bash
+# Start a hidden nested Hyprland (special:tinyhandproto) with a headless output THTEST
+# at 2000,0 focused, and print "<signature> <wayland-display>".
+set -euo pipefail
+here=$(cd "$(dirname "$0")" && pwd)
+before=$(ls "$XDG_RUNTIME_DIR/hypr")
+hyprctl dispatch "hl.exec_cmd(\"Hyprland -c $here/nested-hyprland.lua\", { workspace = \"special:tinyhandproto silent\" })" >/dev/null 2>&1 || true
+sig=""
+for _ in $(seq 50); do
+  sleep 0.2
+  sig=$(comm -13 <(echo "$before") <(ls "$XDG_RUNTIME_DIR/hypr") | head -1)
+  [[ -n $sig && -S $XDG_RUNTIME_DIR/hypr/$sig/.socket.sock ]] && break
+done
+[[ -n $sig ]] || { echo "nested Hyprland did not start" >&2; exit 1; }
+wd=$(hyprctl instances -j | jq -r --arg s "$sig" '.[] | select(.instance == $s) | .wl_socket')
+export HYPRLAND_INSTANCE_SIGNATURE=$sig
+hyprctl output create headless THTEST >/dev/null
+sleep 0.5
+hyprctl eval 'hl.monitor({ output = "THTEST", mode = "1280x800", position = "2000x0", scale = 1 })' >/dev/null
+hyprctl dispatch 'hl.dsp.focus({ monitor = "THTEST" })' >/dev/null 2>&1 || true
+echo "$sig $wd"

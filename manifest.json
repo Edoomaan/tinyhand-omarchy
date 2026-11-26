@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "edooman-tinyhand",
+  "name": "TinyHand",
+  "version": "0.1.0",
+  "author": "edooman",
+  "license": "MIT",
+  "description": "A tiny hand on a stick that points at things on screen. Click to tap, drag to draw. Port of TinyHand by Kamran Ahmed (MIT).",
+  "kinds": ["overlay", "bar-widget"],
+  "keepLoaded": true,
+  "entryPoints": {
+    "overlay": "HandOverlay.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "TinyHand",
+    "description": "Turn the pointing hand on and off",
+    "category": "Tools",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

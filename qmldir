@@ -1,0 +1,11 @@
+singleton TinyState 1.0 TinyState.qml
+PointerSurface 1.0 PointerSurface.qml
+HandArm 1.0 HandArm.qml
+LaserDot 1.0 LaserDot.qml
+TapSound 1.0 TapSound.qml
+InkStroke 1.0 InkStroke.qml
+InkLayer 1.0 InkLayer.qml
+Toolbar 1.0 Toolbar.qml
+ToolbarButton 1.0 ToolbarButton.qml
+InkSwatch 1.0 InkSwatch.qml
+HintPill 1.0 HintPill.qml

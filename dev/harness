@@ -1,0 +1,20 @@
+#!/bin/bash
+# Start (or restart) the plugin harness in the nested Hyprland made by prototype/run.sh.
+# usage: dev/harness <nested-instance-signature> <wayland-display>
+set -euo pipefail
+repo=$(cd "$(dirname "$0")/.." && pwd)
+run="$XDG_RUNTIME_DIR/tinyhand-harness"
+pkill -f "qs -p $run" 2>/dev/null || true
+rm -rf "$run"; mkdir -p "$run/plugin"
+cp -r /usr/share/omarchy/shell/Commons /usr/share/omarchy/shell/Ui "$run/"
+cp "$repo/dev/harness.qml" "$run/shell.qml"
+cp -r "$repo"/*.qml "$repo"/*.js "$repo"/qmldir "$repo"/manifest.json "$repo"/assets "$run/plugin/"
+[[ -d $repo/i18n ]] && cp -r "$repo/i18n" "$run/plugin/"
+export HYPRLAND_INSTANCE_SIGNATURE=$1 WAYLAND_DISPLAY=$2 QT_QPA_PLATFORM=wayland QT_FORCE_STDERR_LOGGING=1 OMARCHY_PATH=/usr/share/omarchy
+export XDG_STATE_HOME="$run/state"
+# Muted: the harness shares the real audio output.
+mkdir -p "$run/state/edooman-tinyhand"
+echo '{"soundHands": false, "soundLaser": false}' > "$run/state/edooman-tinyhand/settings.json"
+unset DISPLAY
+setsid qs -p "$run" > "$run/log" 2>&1 < /dev/null &
+echo "$run"
