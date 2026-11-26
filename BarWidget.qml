@@ -33,12 +33,6 @@ BarWidget {
     else if (root.bar) root.bar.run("omarchy-shell shell call edooman-tinyhand clear ''")
   }
 
-  function tooltipText() {
-    if (TinyState.clickThrough) return TinyState.t("bar.through")
-    if (TinyState.active) return TinyState.t("bar.on")
-    return TinyState.t("bar.off")
-  }
-
   BarIconButton {
     id: button
     anchors.fill: parent
@@ -48,7 +42,8 @@ BarWidget {
     dimmed: !TinyState.active
     foreground: TinyState.clickThrough ? Commons.Color.accent : (root.bar ? root.bar.foreground : Commons.Color.foreground)
 
-    tooltipText: root.tooltipText()
+    // On/off and click-through already show in the icon (dimmed / accent).
+    tooltipText: TinyState.t("bar.tooltip")
     onPressed: function(mouseButton) {
       if (mouseButton === Qt.LeftButton) {
         root.togglePointer()
