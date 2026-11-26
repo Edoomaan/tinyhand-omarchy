@@ -121,7 +121,12 @@ BarWidget {
             borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
             topPadding: Style.space(2); bottomPadding: Style.space(2)
             leftPadding: Style.space(6); rightPadding: Style.space(6)
+            // BorderSurface doesn't size itself from its children.
+            implicitWidth: badgeLabel.implicitWidth + leftPadding + rightPadding
+            implicitHeight: badgeLabel.implicitHeight + topPadding + bottomPadding
             Text {
+              id: badgeLabel
+              anchors.centerIn: parent
               textFormat: Text.PlainText
               text: TinyState.active ? (TinyState.clickThrough ? "THROUGH" : "ON") : "OFF"
               font.pixelSize: Style.font.caption
@@ -314,7 +319,11 @@ BarWidget {
               borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
               topPadding: Style.space(4); bottomPadding: Style.space(4)
               leftPadding: Style.space(8); rightPadding: Style.space(8)
+              implicitWidth: backLabel.implicitWidth + leftPadding + rightPadding
+              implicitHeight: backLabel.implicitHeight + topPadding + bottomPadding
               Text {
+                id: backLabel
+                anchors.centerIn: parent
                 textFormat: Text.PlainText
                 text: "\u2190 " + TinyState.t("settings.back")
                 font.pixelSize: Style.font.body
@@ -365,7 +374,11 @@ BarWidget {
               borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
               topPadding: Style.space(4); bottomPadding: Style.space(4)
               leftPadding: Style.space(10); rightPadding: Style.space(10)
+              implicitWidth: keyLabel.implicitWidth + leftPadding + rightPadding
+              implicitHeight: keyLabel.implicitHeight + topPadding + bottomPadding
               Text {
+                id: keyLabel
+                anchors.centerIn: parent
                 textFormat: Text.PlainText
                 text: TinyState.settings.interactKey.toUpperCase()
                 font.pixelSize: Style.font.body
@@ -445,8 +458,12 @@ BarWidget {
                 borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
                 topPadding: Style.space(2); bottomPadding: Style.space(2)
                 leftPadding: Style.space(6); rightPadding: Style.space(6)
+                implicitWidth: chipLabel.implicitWidth + leftPadding + rightPadding
+                implicitHeight: chipLabel.implicitHeight + topPadding + bottomPadding
 
                 Text {
+                  id: chipLabel
+                  anchors.centerIn: parent
                   textFormat: Text.PlainText
                   text: (isPinned ? "\u2713 " : "") + TinyState.styleTitle(modelData)
                   font.pixelSize: Style.font.caption
@@ -493,7 +510,9 @@ BarWidget {
               borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
               topPadding: Style.space(2); bottomPadding: Style.space(2)
               leftPadding: Style.space(8); rightPadding: Style.space(8)
-              Text { textFormat: Text.PlainText; text: "\u2212"; font.bold: true; color: Commons.Color.foreground }
+              implicitWidth: sizeDownLabel.implicitWidth + leftPadding + rightPadding
+              implicitHeight: sizeDownLabel.implicitHeight + topPadding + bottomPadding
+              Text { id: sizeDownLabel; anchors.centerIn: parent; textFormat: Text.PlainText; text: "\u2212"; font.bold: true; color: Commons.Color.foreground }
               HoverHandler { id: sizeDownHover }
               MouseArea {
                 anchors.fill: parent
@@ -506,7 +525,9 @@ BarWidget {
               borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
               topPadding: Style.space(2); bottomPadding: Style.space(2)
               leftPadding: Style.space(8); rightPadding: Style.space(8)
-              Text { textFormat: Text.PlainText; text: "+"; font.bold: true; color: Commons.Color.foreground }
+              implicitWidth: sizeUpLabel.implicitWidth + leftPadding + rightPadding
+              implicitHeight: sizeUpLabel.implicitHeight + topPadding + bottomPadding
+              Text { id: sizeUpLabel; anchors.centerIn: parent; textFormat: Text.PlainText; text: "+"; font.bold: true; color: Commons.Color.foreground }
               HoverHandler { id: sizeUpHover }
               MouseArea {
                 anchors.fill: parent
@@ -540,7 +561,11 @@ BarWidget {
               borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
               topPadding: Style.space(4); bottomPadding: Style.space(4)
               leftPadding: Style.space(10); rightPadding: Style.space(10)
+              implicitWidth: fadeLabel.implicitWidth + leftPadding + rightPadding
+              implicitHeight: fadeLabel.implicitHeight + topPadding + bottomPadding
               Text {
+                id: fadeLabel
+                anchors.centerIn: parent
                 textFormat: Text.PlainText
                 text: TinyState.settings.fadeSeconds === 0 ? TinyState.t("settings.fade.keep") : TinyState.settings.fadeSeconds + "s"
                 font.pixelSize: Style.font.body
@@ -577,8 +602,12 @@ BarWidget {
                 borderSpec: Border.controlSpec("normal", Commons.Color.foreground, Commons.Color.accent)
                 topPadding: Style.space(2); bottomPadding: Style.space(2)
                 leftPadding: Style.space(6); rightPadding: Style.space(6)
+                implicitWidth: soundLabel.implicitWidth + leftPadding + rightPadding
+                implicitHeight: soundLabel.implicitHeight + topPadding + bottomPadding
 
                 Text {
+                  id: soundLabel
+                  anchors.centerIn: parent
                   textFormat: Text.PlainText
                   text: (isSelected ? "\u25B6 " : "") + modelData
                   font.pixelSize: Style.font.caption
