@@ -1,5 +1,7 @@
 # TinyHand for Omarchy
 
+![A tiny hand for Omarchy](preview.jpeg)
+
 A tiny hand on a stick that points at things on your screen. Click to tap, drag to draw.
 
 Inspired by and ported from [TinyHand](https://tinyhand.app) by Kamran Ahmed
@@ -11,6 +13,8 @@ Inspired by and ported from [TinyHand](https://tinyhand.app) by Kamran Ahmed
 - Hold `Alt` to click for real, double-tap `Shift` to let every click through
 - Bar icon: left click toggles, right click opens the menu and settings
 - Turns itself off on sleep and screen lock
+
+![The 36 built-in hands](docs/images/hands.png)
 
 ## Requirements
 
